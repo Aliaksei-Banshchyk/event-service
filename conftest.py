@@ -1,12 +1,4 @@
-"""
-conftest.py – EventService
-Place at the ROOT of the event-service repo alongside events.py.
-
-volunteer-shared must be installed (via Azure Artifacts) before running tests,
-so database, models, auth etc. are importable as regular installed packages.
-"""
 import os
-
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -22,9 +14,7 @@ with patch.dict(os.environ, {
     import models
 
 database.engine = create_engine(SQLITE_URL, connect_args={"check_same_thread": False})
-database.SessionLocal = sessionmaker(
-    autocommit=False, autoflush=False, bind=database.engine
-)
+database.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=database.engine)
 
 for table in models.Base.metadata.tables.values():
     table.schema = None
