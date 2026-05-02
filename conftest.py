@@ -1,12 +1,11 @@
 """
 conftest.py – EventService
 Place at the ROOT of the event-service repo alongside events.py.
-"""
-import sys
-import os
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'shared'))
-sys.path.insert(0, os.path.dirname(__file__))
+volunteer-shared must be installed (via Azure Artifacts) before running tests,
+so database, models, auth etc. are importable as regular installed packages.
+"""
+import os
 
 import pytest
 from sqlalchemy import create_engine
